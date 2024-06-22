@@ -26,3 +26,12 @@ if find_spec("cohere"):
     Client = partial(OriginalCohereClient, base_url=ENDPOINT, api_key=API_KEY)
 
     __all__.append("Client")
+
+if find_spec("google"):
+    import google.generativeai as genai
+
+    genai.configure(api_key="None", client_options={"api_endpoint": "http://localhost:8000"})
+
+    GenerativeModel = genai.GenerativeModel
+
+    __all__.append("GenerativeModel")
